@@ -134,7 +134,7 @@ describe('Planet', function() {
   it('cannot send a ship if it is has no fuel', function() {
     var planet = new Planet({name: 'F2', coordinates: {x:0, y:0, z:0}})
     var otherPlanet = new Planet({name: 'M2', coordinates: {x:1, y:1, z:1}})
-    var captian = new Being('Will', 'human');
+    var captain = new Being('Will', 'human');
     var parts = {
       shell: new Part({name: 'S-1', type: 'shell', value: 200}),
       hyperdrive: new Part({name: 'R-100', type: 'hyperdrive', value: 20}),
@@ -146,7 +146,7 @@ describe('Planet', function() {
       {
         name: 'Atlantis',
         type: 'military',
-        captian: captian,
+        captain: captain,
         maxCrew: 2,
         odometer: 3340,
         parts: parts,
@@ -159,7 +159,7 @@ describe('Planet', function() {
     assert.equal(result, "Clearance denied: Cannot fly without fuel")
   })
 
-  it.skip('cannot send a ship if it is has insufficient fuel', function() {
+  it('cannot send a ship if it is has insufficient fuel', function() {
     var planet = new Planet({name: 'F2', coordinates: {x:0, y:0, z:0}})
     var otherPlanet = new Planet({name: 'M2', coordinates: {x:1, y:1, z:1}})
     var captian = new Being('Will', 'human');
@@ -189,7 +189,7 @@ describe('Planet', function() {
     assert.equal(result, `Clearance denied: Need at least ${Math.ceil(fuelRequired)} units of fuel to reach ${otherPlanet.name}`)
   })
 
-  it.skip('can send a ship and update the ship & planets', function() {
+  it('can send a ship and update the ship & planets', function() {
     var planet = new Planet({name: 'F2', coordinates: {x:0, y:0, z:0}})
     var otherPlanet = new Planet({name: 'M2', coordinates: {x:1, y:1, z:1}})
     var captian = new Being('Will', 'human');

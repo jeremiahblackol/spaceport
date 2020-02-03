@@ -7,6 +7,7 @@ class Planet {
     this.shop = shop;
     this.currentShip = {};
     this.coordinates = coordinates;
+    // this.result = "";
   }
 
   landShip(ship){
@@ -29,21 +30,25 @@ class Planet {
   }
 
   giveClearance(planet){
-    var hasParts = this.currentShip.parts.part;
-    var doesNotHaveParts = !hasParts;
-    if(doesNotHaveParts){
-      return "Clearance denied: Cannot fly without all parts"
-    // } else if(this.currentShip.fuel === 0){
-    //   return "Clearance denied: Cannot fly without fuel"
-    }
-    // var hasParts = !this.currentShip.parts;
-    // var clearedForParts = this.currentShip.parts ? console.log('hey') : console.log('ho');
-    //
-    // return clearedForParts
-    // if(this.currentShip.parts = undefined){
-    // }
-    // console.log(this.currentShip.parts)
+    var hasParts = Object.keys(this.currentShip.parts).length > 0;
+    var hasFuel = this.currentShip.fuel;
+    var fuelRequired = Math.ceil(this.calculateDistance(planet));
+    var needsMoreFuel = hasFuel < fuelRequired;
+    var result = "";
 
+    if(!hasParts){
+      result = "Clearance denied: Cannot fly without all parts";
+      return result
+    }
+    if(!hasFuel) {
+      result =  "Clearance denied: Cannot fly without fuel";
+      return result
+    }
+    if(hasFuel && needsMoreFuel) {
+      result = `Clearance denied: Need at least ${fuelRequired} units of fuel to reach ${planet.name}`;
+      return result
+    }
+      return
   }
 }
 
