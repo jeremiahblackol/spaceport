@@ -48,6 +48,14 @@ class Planet {
       result = `Clearance denied: Need at least ${fuelRequired} units of fuel to reach ${planet.name}`;
       return result
     }
+    if(hasFuel && hasParts){
+      this.currentShip.fuel = hasFuel - fuelRequired;
+      planet.currentShip = this.currentShip;
+      this.currentShip = undefined;
+      result = `Clearance granted: Enjoy your trip to ${planet.name}`;
+      return result
+
+    }
       return
   }
 }
